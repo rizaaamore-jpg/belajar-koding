@@ -82,3 +82,81 @@ pre {
   color: black;
   font-size: 12px;
 }
+
+/* BODY */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e5e7eb;
+}
+
+/* CONTAINER UTAMA */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* CARD NGAMBANG */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(160deg, #020617, #020617cc);
+  border-radius: 18px;
+  padding: 25px;
+  position: relative;
+
+  /* efek ngambang */
+  box-shadow:
+    0 0 20px rgba(34,211,238,0.25),
+    0 0 60px rgba(34,211,238,0.15);
+
+  border: 1px solid rgba(34,211,238,0.4);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ANIMASI NGAMBANG */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* JUDUL */
+.card h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #22d3ee;
+}
+
+/* SUBTEKS */
+.card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5f5;
+}
+
+/* BADGE */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#22d3ee,#38bdf8);
+  color: #020617;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 480px) {
+  .card {
+    max-width: 95%;
+  }
+}
