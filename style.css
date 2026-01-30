@@ -3,71 +3,109 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-/* FULLSCREEN PAGE */
-body, html {
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at top, #0a1a2f, #000814);
-  color: #fff;
-  overflow-x: hidden;
+/* BODY FULLSCREEN */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #081a2f, #020617);
+  color: #e5f0ff;
 }
 
-/* WRAPPER FULLSCREEN */
-.page {
-  min-height: 100vh;              /* FULL LAYAR */
+/* DASHBOARD FLOATING */
+.dashboard {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;            /* TENGAH VERTIKAL */
-  justify-content: center;        /* TENGAH HORIZONTAL */
-  padding: 20px;
-}
-
-/* DASHBOARD CARD */
-.dashboard-card {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(10, 25, 47, 0.85);
-  border-radius: 18px;
-  padding: 28px;
-  text-align: center;
-
-  /* NEON */
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  box-shadow:
-    0 0 15px rgba(0, 255, 255, 0.25),
-    0 0 40px rgba(0, 150, 255, 0.15);
-
-  backdrop-filter: blur(10px);
-}
-
-/* JUDUL */
-.dashboard-card h1 {
-  font-size: 26px;
-  margin-bottom: 10px;
-  color: #00f5ff;
-}
-
-/* DESKRIPSI */
-.dashboard-card p {
-  font-size: 15px;
-  opacity: 0.85;
-  margin-bottom: 18px;
-}
-
-/* BUTTON */
-.btn-start {
-  background: linear-gradient(135deg, #00f5ff, #0066ff);
-  border: none;
-  color: #000;
+  gap: 14px;
   padding: 12px 20px;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  border-radius: 18px;
+  background: rgba(10, 30, 60, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0,180,255,.35);
+  z-index: 999;
 }
 
-.btn-start:hover {
-  transform: scale(1.05);
+.dashboard a {
+  text-decoration: none;
+  color: #9fe7ff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #0b2c4a, #071d33);
+  transition: 0.3s;
+}
+
+.dashboard a:hover {
+  background: linear-gradient(145deg, #00eaff, #0077ff);
+  color: #001018;
+  box-shadow: 0 0 18px rgba(0,234,255,.8);
+}
+
+/* FULLSCREEN CENTER */
+.fullscreen-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CARD UTAMA */
+.card {
+  background: rgba(8, 22, 40, 0.75);
+  padding: 40px 36px;
+  border-radius: 26px;
+  box-shadow:
+    0 0 35px rgba(0,160,255,.35),
+    inset 0 0 18px rgba(0,160,255,.15);
+}
+
+/* CARD INDEX */
+.main-card {
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  animation: float 5s ease-in-out infinite;
+}
+
+/* FLOAT EFFECT */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.card h1 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  opacity: .85;
+  margin-bottom: 16px;
+}
+
+/* BADGE */
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00eaff, #0077ff);
+  color: #001018;
+  box-shadow: 0 0 12px rgba(0,234,255,.7);
+}
+
+/* ===== MATERI & KEAMANAN ===== */
+.content {
+  padding: 120px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 700px;
+  margin: auto;
 }
