@@ -1,0 +1,56 @@
+body {
+  font-family: Arial;
+  background: #eaf2ff;
+  padding: 20px;
+}
+
+h1 { text-align: center; color: #0a3cff; }
+
+.menu { text-align: center; margin-bottom: 20px; }
+.menu a {
+  background: #0a3cff;
+  color: white;
+  padding: 8px 12px;
+  margin: 3px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.materi {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+pre {
+  background: #111;
+  color: #0f0;
+  padding: 10px;
+}
+
+.quiz {
+  margin-top: 10px;
+  background: #f0f6ff;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+button {
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+.dashboard {
+  text-align: center;
+  margin-top: 120px;
+}
+
+.btn {
+  background: #0a3cff;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+  border-radius: 8px;
+}
