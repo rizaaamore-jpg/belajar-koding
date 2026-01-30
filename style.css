@@ -1,90 +1,84 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: #fff;
-  padding: 20px;
+  margin: 0;
+  background: radial-gradient(circle at top, #020617, #000);
+  color: #e5e7eb;
 }
 
-/* JUDUL */
-.judul-halaman {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 28px;
+/* DASHBOARD */
+.dashboard {
+  position: sticky;
+  top: 0;
+  background: rgba(2,6,23,.9);
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+  border-bottom: 1px solid #0ff;
+}
+
+.dashboard a {
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#0ff,#2563eb);
+  color: black;
+  font-weight: bold;
 }
 
 /* CONTAINER */
-.materi-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.container {
+  padding: 20px;
 }
 
-/* CARD MATERI */
-.materi-card {
-  position: relative;
-  padding: 25px 20px 20px 70px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  animation: fadeUp 0.6s ease;
+/* CARD */
+.card {
+  margin-bottom: 20px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 20px rgba(0,255,255,.3);
+  border: 1px solid rgba(0,255,255,.4);
 }
 
 /* NOMOR */
 .nomor {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 38px;
-  height: 38px;
-  background: #fff;
-  color: #000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 26px;
   font-weight: bold;
+  color: #0ff;
 }
 
-/* JUDUL MATERI */
-.materi-card h2 {
-  margin-bottom: 8px;
-  font-size: 20px;
+/* CODE */
+pre {
+  background: #020617;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-x: auto;
+  color: #0ff;
 }
 
-/* TEKS */
-.materi-card p {
-  line-height: 1.6;
-  opacity: 0.95;
+/* QUIZ */
+.quiz button {
+  margin: 5px 5px 0 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #111827;
+  color: white;
+  border: 1px solid #0ff;
 }
 
-/* WARNA RANDOM */
-.bg1 { background: linear-gradient(135deg, #2563eb, #1e40af); }
-.bg2 { background: linear-gradient(135deg, #16a34a, #166534); }
-.bg3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
-.bg4 { background: linear-gradient(135deg, #dc2626, #7f1d1d); }
-.bg5 { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
-
-/* ANIMASI */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .materi-card {
-    padding-left: 65px;
-  }
+/* BADGE */
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #0ff;
+  color: black;
+  font-size: 12px;
 }
