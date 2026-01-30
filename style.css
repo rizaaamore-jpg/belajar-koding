@@ -115,3 +115,32 @@ body {
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
+
+/* === FIX CARD JADI KE BAWAH (VERTIKAL) === */
+
+/* container card */
+.card-container,
+.cards,
+.materi-list,
+.security-list {
+  display: flex;
+  flex-direction: column;   /* INI KUNCI */
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .card,
+  .materi-card,
+  .security-card {
+    width: 95%;
+  }
+}
+
+/* masing-masing card */
+.card,
+.materi-card,
+.security-card {
+  width: 90%;
+  max-width: 420px;
+}
