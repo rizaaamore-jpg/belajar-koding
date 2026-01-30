@@ -141,6 +141,70 @@ body {
   line-height: 1.6;
 }
 
+/* === QUIZ ANSWER BUTTON === */
+.quiz-btn {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 10px 0;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  background: linear-gradient(
+    135deg,
+    #00c6ff,
+    #0072ff,
+    #0047ff
+  );
+  color: #eaffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  box-shadow:
+    0 0 12px rgba(0, 180, 255, 0.6),
+    inset 0 0 12px rgba(0, 255, 255, 0.25);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover scan effect */
+.quiz-btn::before {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 255, 255, 0.35),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: all 0.6s ease;
+}
+
+.quiz-btn:hover::before {
+  top: 120%;
+}
+
+/* Hover state */
+.quiz-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 0 22px rgba(0, 220, 255, 0.9),
+    inset 0 0 18px rgba(0, 255, 255, 0.35);
+}
+
+/* Click state */
+.quiz-btn:active {
+  transform: scale(0.96);
+  box-shadow:
+    0 0 10px rgba(0, 150, 255, 0.6),
+    inset 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
 /* CODE BLOCK */
 code {
   display: block;
