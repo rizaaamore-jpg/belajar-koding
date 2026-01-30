@@ -225,3 +225,8 @@ code {
   background: linear-gradient(135deg, #ff416c, #ff004c);
   box-shadow: 0 0 20px rgba(255, 60, 90, 0.8);
 }
+
+html, body {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
