@@ -18,3 +18,9 @@ function tampilBadge() {
   if (score >= 5) badge.innerText = "🏆 Cyber Rookie";
   if (score >= 10) badge.innerText = "⚡ Cyber Hacker";
 }
+
+<script>
+document.addEventListener('gesturestart', e => e.preventDefault());
+document.addEventListener('gesturechange', e => e.preventDefault());
+document.addEventListener('gestureend', e => e.preventDefault());
+</script>
