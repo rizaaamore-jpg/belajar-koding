@@ -1,86 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Materi Coding</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<!-- DASHBOARD -->
-<div class="top-dashboard">
+<div class="dashboard">
   <a href="index.html">🏠 Home</a>
-  <a href="materi.html">📘 Materi Coding</a>
-  <a href="keamanan.html">🌐 Keamanan Jaringan</a>
+  <a href="keamanan.html">🛡️ Keamanan</a>
 </div>
 
-<h1 class="judul-halaman">📚 Materi Coding Dasar</h1>
+<div class="container">
 
-<div class="materi-container">
-
-  <div class="materi-card bg1">
-    <div class="nomor">1</div>
-    <h2>Pengertian Coding</h2>
-    <p>Coding adalah proses menulis perintah menggunakan bahasa pemrograman agar komputer dapat menjalankan tugas.</p>
-    <pre><code>print("Halo Dunia")</code></pre>
+<!-- MATERI 1 -->
+<div class="card">
+  <div class="nomor">1</div>
+  <h3>Pengertian Coding</h3>
+  <p>
+    Coding adalah proses menulis instruksi menggunakan bahasa pemrograman
+    agar komputer dapat menjalankan perintah tertentu.
+  </p>
+  <pre>print("Halo Dunia")</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Instruksi komputer</button>
+    <button onclick="jawab(this,false)">Bahasa manusia</button>
   </div>
+</div>
 
-  <div class="materi-card bg2">
-    <div class="nomor">2</div>
-    <h2>Manfaat Coding</h2>
-    <p>Coding bermanfaat untuk membuat website, aplikasi, game, dan sistem komputer.</p>
-    <pre><code>console.log("Belajar Coding");</code></pre>
+<!-- MATERI 2 -->
+<div class="card">
+  <div class="nomor">2</div>
+  <h3>Manfaat Coding</h3>
+  <p>
+    Coding digunakan untuk membuat website, aplikasi, game,
+    serta mengotomatisasi pekerjaan.
+  </p>
+  <pre>console.log("Belajar Coding");</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Membuat aplikasi</button>
+    <button onclick="jawab(this,false)">Hanya bermain game</button>
   </div>
+</div>
 
-  <div class="materi-card bg3">
-    <div class="nomor">3</div>
-    <h2>Algoritma</h2>
-    <p>Algoritma adalah langkah-langkah logis dan berurutan untuk menyelesaikan masalah.</p>
-    <pre><code>if (nilai &gt; 75) { lulus = true; }</code></pre>
+<!-- MATERI 3 -->
+<div class="card">
+  <div class="nomor">3</div>
+  <h3>Algoritma</h3>
+  <p>
+    Algoritma adalah langkah-langkah logis dan berurutan
+    untuk menyelesaikan suatu masalah.
+  </p>
+  <pre>
+if (nilai >= 75) {
+  lulus = true;
+}
+  </pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Langkah logis</button>
+    <button onclick="jawab(this,false)">Tebakan</button>
   </div>
+</div>
 
-  <div class="materi-card bg4">
-    <div class="nomor">4</div>
-    <h2>Flowchart</h2>
-    <p>Flowchart adalah diagram alur yang menggambarkan langkah-langkah algoritma.</p>
-    <pre><code>Mulai → Proses → Selesai</code></pre>
+<!-- MATERI 4 -->
+<div class="card">
+  <div class="nomor">4</div>
+  <h3>Flowchart</h3>
+  <p>
+    Flowchart adalah diagram alur yang menggambarkan
+    jalannya algoritma dari awal sampai akhir.
+  </p>
+  <pre>Mulai → Proses → Selesai</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Diagram alur</button>
+    <button onclick="jawab(this,false)">Bahasa pemrograman</button>
   </div>
+</div>
 
-  <div class="materi-card bg5">
-    <div class="nomor">5</div>
-    <h2>HTML</h2>
-    <p>HTML digunakan untuk membuat struktur dasar sebuah website.</p>
-    <pre><code>&lt;h1&gt;Judul Website&lt;/h1&gt;</code></pre>
+<!-- MATERI 5 -->
+<div class="card">
+  <div class="nomor">5</div>
+  <h3>HTML</h3>
+  <p>
+    HTML digunakan untuk membuat struktur dasar sebuah website.
+  </p>
+  <pre>&lt;h1&gt;Judul Website&lt;/h1&gt;</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Struktur website</button>
+    <button onclick="jawab(this,false)">Database</button>
   </div>
+</div>
 
-  <div class="materi-card bg1">
-    <div class="nomor">6</div>
-    <h2>CSS</h2>
-    <p>CSS digunakan untuk mengatur tampilan dan desain website.</p>
-    <pre><code>color: blue;</code></pre>
+<!-- MATERI 6 -->
+<div class="card">
+  <div class="nomor">6</div>
+  <h3>CSS</h3>
+  <p>
+    CSS digunakan untuk mengatur tampilan dan desain website
+    seperti warna, ukuran, dan layout.
+  </p>
+  <pre>color: blue;</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Desain website</button>
+    <button onclick="jawab(this,false)">Logika program</button>
   </div>
+</div>
 
-  <div class="materi-card bg2">
-    <div class="nomor">7</div>
-    <h2>JavaScript</h2>
-    <p>JavaScript digunakan untuk membuat website menjadi interaktif.</p>
-    <pre><code>alert("Halo User");</code></pre>
+<!-- MATERI 7 -->
+<div class="card">
+  <div class="nomor">7</div>
+  <h3>JavaScript</h3>
+  <p>
+    JavaScript membuat website menjadi interaktif,
+    seperti tombol, popup, dan validasi.
+  </p>
+  <pre>alert("Halo User");</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Interaktif</button>
+    <button onclick="jawab(this,false)">Hanya desain</button>
   </div>
+</div>
 
-  <div class="materi-card bg3">
-    <div class="nomor">8</div>
-    <h2>Variabel</h2>
-    <p>Variabel adalah tempat untuk menyimpan data.</p>
-    <pre><code>let umur = 17;</code></pre>
+<!-- MATERI 8 -->
+<div class="card">
+  <div class="nomor">8</div>
+  <h3>Variabel</h3>
+  <p>
+    Variabel adalah tempat untuk menyimpan data
+    yang bisa digunakan kembali.
+  </p>
+  <pre>let umur = 17;</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Menyimpan data</button>
+    <button onclick="jawab(this,false)">Menampilkan gambar</button>
   </div>
+</div>
 
-  <div class="materi-card bg4">
-    <div class="nomor">9</div>
-    <h2>Conditional (Percabangan)</h2>
-    <p>Percabangan digunakan untuk pengambilan keputusan.</p>
-    <pre><code>if (login) { masuk(); }</code></pre>
+<!-- MATERI 9 -->
+<div class="card">
+  <div class="nomor">9</div>
+  <h3>Percabangan</h3>
+  <p>
+    Percabangan digunakan untuk pengambilan keputusan
+    berdasarkan kondisi tertentu.
+  </p>
+  <pre>if (login) { masuk(); }</pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Pengambilan keputusan</button>
+    <button onclick="jawab(this,false)">Perulangan</button>
   </div>
+</div>
 
-  <div class="materi-card bg5">
-    <div class="nomor">10</div>
-    <h2>Looping (Perulangan)</h2>
-    <p>Looping digunakan untuk menjalankan perintah berulang kali.</p>
-    <pre><code>for (let i=1; i&lt;=5; i++) { console.log(i); }</code></pre>
+<!-- MATERI 10 -->
+<div class="card">
+  <div class="nomor">10</div>
+  <h3>Perulangan (Loop)</h3>
+  <p>
+    Loop digunakan untuk menjalankan perintah
+    secara berulang kali.
+  </p>
+  <pre>
+for (let i=1; i<=5; i++) {
+  console.log(i);
+}
+  </pre>
+  <div class="quiz">
+    <button onclick="jawab(this,true)">Perulangan</button>
+    <button onclick="jawab(this,false)">Percabangan</button>
   </div>
+</div>
 
 </div>
 
+<script src="script.js"></script>
 </body>
+</html>
