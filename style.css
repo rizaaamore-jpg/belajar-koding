@@ -1,142 +1,90 @@
-:root {
-  --primary: #2563eb;
-  --secondary: #1e293b;
-  --accent: #38bdf8;
-  --bg: #0f172a;
-  --card: #111827;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-}
-
+/* RESET */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  margin: 0;
-  background: radial-gradient(circle at top, #1e3a8a, #020617);
-  color: var(--text);
-}
-
-.app {
-  max-width: 420px;
-  margin: auto;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #fff;
   padding: 20px;
-  min-height: 100vh;
 }
 
-/* ===== HERO ===== */
-.hero {
+/* JUDUL */
+.judul-halaman {
   text-align: center;
-  margin-top: 50px;
-}
-
-.logo {
-  font-size: 52px;
-  margin-bottom: 10px;
-  filter: drop-shadow(0 0 10px #38bdf8);
-}
-
-.hero h1 {
+  margin-bottom: 25px;
   font-size: 28px;
-  margin: 0;
-  color: white;
 }
 
-.hero p {
-  font-size: 14px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-
-/* ===== BUTTON ===== */
-.action {
+/* CONTAINER */
+.materi-container {
   display: flex;
-  gap: 12px;
-  margin: 35px 0;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.btn {
-  flex: 1;
-  padding: 14px;
-  border-radius: 14px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: 0.3s ease;
+/* CARD MATERI */
+.materi-card {
+  position: relative;
+  padding: 25px 20px 20px 70px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  animation: fadeUp 0.6s ease;
 }
 
-.primary {
-  background: linear-gradient(135deg, #2563eb, #38bdf8);
-  color: white;
-  box-shadow: 0 8px 20px rgba(37,99,235,.4);
+/* NOMOR */
+.nomor {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
-.secondary {
-  background: linear-gradient(135deg, #1e293b, #334155);
-  color: white;
+/* JUDUL MATERI */
+.materi-card h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
 }
 
-.btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 25px rgba(0,0,0,.4);
+/* TEKS */
+.materi-card p {
+  line-height: 1.6;
+  opacity: 0.95;
 }
 
-/* ===== FEATURES ===== */
-.features {
-  display: grid;
-  gap: 16px;
+/* WARNA RANDOM */
+.bg1 { background: linear-gradient(135deg, #2563eb, #1e40af); }
+.bg2 { background: linear-gradient(135deg, #16a34a, #166534); }
+.bg3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+.bg4 { background: linear-gradient(135deg, #dc2626, #7f1d1d); }
+.bg5 { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
+
+/* ANIMASI */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.card {
-  background: linear-gradient(180deg, #020617, #020617);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow:
-    inset 0 0 0 1px rgba(148,163,184,.15),
-    0 10px 25px rgba(0,0,0,.6);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    inset 0 0 0 1px var(--accent),
-    0 15px 30px rgba(56,189,248,.25);
-}
-
-.card h3 {
-  margin: 10px 0 6px;
-  font-size: 16px;
-  color: #e0f2fe;
-}
-
-.card p {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 40px;
-  opacity: 0.8;
-}
-
-.features {
-  margin-top: 20px;
-}
-
-.card {
-  background: linear-gradient(180deg, #020617, #020617);
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow:
-    inset 0 0 0 1px rgba(148,163,184,.15),
-    0 15px 30px rgba(0,0,0,.55);
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .materi-card {
+    padding-left: 65px;
+  }
 }
