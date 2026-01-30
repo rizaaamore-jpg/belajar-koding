@@ -151,3 +151,13 @@ code {
   color: #00ffcc;
   box-shadow: inset 0 0 12px #00ffcc33;
 }
+
+.quiz-btn.correct {
+  background: linear-gradient(135deg, #00ff9c, #00c853);
+  box-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+}
+
+.quiz-btn.wrong {
+  background: linear-gradient(135deg, #ff416c, #ff004c);
+  box-shadow: 0 0 20px rgba(255, 60, 90, 0.8);
+}
