@@ -118,4 +118,220 @@
                 <h2><i class="fas fa-brain"></i> AI Shopping Insights</h2>
                 <div class="insights-grid">
                     <div class="insight-card">
-                        <
+                        <h3>Recommended For You</h3>
+                        <div class="insight-content" id="aiRecommendations">
+                            <!-- AI recommendations will load here -->
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Spending Analysis</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="spendingChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Category Preferences</h3>
+                        <div class="preferences-list" id="categoryPreferences">
+                            <!-- Preferences will load here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Orders -->
+            <section class="recent-orders">
+                <h2>Recent Orders</h2>
+                <div class="orders-table" id="ordersTable">
+                    <!-- Orders will load here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            setupNavigation();
+        });
+        
+        function loadDashboardData() {
+            // Load user data
+            const user = JSON.parse(localStorage.getItem('marketplace_user'));
+            if (user) {
+                document.getElementById('userName').textContent = user.name;
+            }
+            
+            // Load orders
+            const orders = JSON.parse(localStorage.getItem('marketplace_orders') || '[]');
+            updateOrderStats(orders);
+            renderRecentOrders(orders);
+            
+            // Load wishlist
+            const wishlist = JSON.parse(localStorage.getItem('marketplace_wishlist') || '[]');
+            updateWishlistStats(wishlist);
+            
+            // Load AI recommendations
+            loadAIRecommendations();
+        }
+        
+        function updateOrderStats(orders) {
+            const totalOrders = orders.length;
+            const totalSpent = orders.reduce((sum, order) => sum + order.summary.total, 0);
+            
+            document.getElementById('totalOrders').textContent = totalOrders;
+            document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
+        }
+        
+        function updateWishlistStats(wishlist) {
+            document.getElementById('wishlistItems').textContent = wishlist.length;
+        }
+        
+        function renderRecentOrders(orders) {
+            const container = document.getElementById('ordersTable');
+            
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>No orders yet</p>
+                        <a href="index.html" class="btn-outline">Start Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            orders.slice(-5).reverse().forEach(order => {
+                html += `
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${new Date(order.date).toLocaleDateString()}</td>
+                        <td>${order.items.length} items</td>
+                        <td>$${order.summary.total.toFixed(2)}</td>
+                        <td><span class="status ${order.status}">${order.status}</span></td>
+                        <td>
+                            <button class="btn-small" onclick="viewOrder('${order.id}')">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        }
+        
+        async function loadAIRecommendations() {
+            // Load products
+            const products = JSON.parse(localStorage.getItem('marketplace_products') || '[]');
+            
+            if (products.length === 0) {
+                // Load default products
+                const response = await fetch('data/products.json');
+                const data = await response.json();
+                localStorage.setItem('marketplace_products', JSON.stringify(data));
+                products = data;
+            }
+            
+            // Generate AI recommendations
+            const userPreferences = JSON.parse(localStorage.getItem('ai_preferences') || '{}');
+            const recommendations = generatePersonalizedRecommendations(products, userPreferences);
+            
+            // Render recommendations
+            renderAIRecommendations(recommendations.slice(0, 3));
+        }
+        
+        function generatePersonalizedRecommendations(products, preferences) {
+            // Simple recommendation algorithm
+            return products
+                .map(product => {
+                    let score = Math.random(); // Base score
+                    
+                    // Boost score based on preferences
+                    if (preferences.categories && preferences.categories.includes(product.category)) {
+                        score += 0.3;
+                    }
+                    
+                    // Boost based on rating
+                    score += (product.rating / 5) * 0.2;
+                    
+                    return { ...product, score };
+                })
+                .sort((a, b) => b.score - a.score);
+        }
+        
+        function renderAIRecommendations(recommendations) {
+            const container = document.getElementById('aiRecommendations');
+            
+            if (recommendations.length === 0) {
+                container.innerHTML = '<p>No recommendations yet. Start shopping!</p>';
+                return;
+            }
+            
+            let html = '';
+            recommendations.forEach(product => {
+                html += `
+                    <div class="recommendation-item">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div>
+                            <h4>${product.name}</h4>
+                            <p>$${product.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function setupNavigation() {
+            // Handle nav clicks
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const section = this.getAttribute('href').substring(1);
+                    showSection(section);
+                });
+            });
+        }
+        
+        function showSection(sectionId) {
+            // In a real app, this would show different sections
+            // For now, just scroll to section
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function viewOrder(orderId) {
+            // In a real app, show order details modal
+            alert(`Viewing order: ${orderId}`);
+        }
+    </script>
+</body>
+</html>
