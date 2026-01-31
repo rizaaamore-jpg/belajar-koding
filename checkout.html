@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ProMarketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <!-- Header -->
+        <header class="checkout-header">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Continue Shopping
+            </a>
+            <div class="checkout-logo">
+                <i class="fas fa-bolt"></i>
+                <span>ProMarket</span>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active">1. Cart</div>
+                <div class="step active">2. Information</div>
+                <div class="step">3. Shipping</div>
+                <div class="step">4. Payment</div>
+            </div>
+        </header>
+
+        <main class="checkout-main">
+            <!-- Left: Checkout Form -->
+            <div class="checkout-form">
+                <h2>Shipping Information</h2>
+                
+                <form id="checkoutForm">
+                    <div class="form-section">
+                        <h3>Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone *</label>
+                                <input type="tel" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Shipping Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name *</label>
+                                <input type="text" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Address *</label>
+                            <input type="text" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP Code *</label>
+                                <input type="text" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <select required>
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Shipping Method</h3>
+                        <div class="shipping-methods">
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <div class="shipping-info">
+                                    <h4>Standard Shipping</h4>
+                                    <p>3-5 business days</p>
+                                </div>
+                                <span class="shipping-price">$9.99</span>
+                            </label>
+                            
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="express">
+                                <div class="shipping-info">
+                                    <h4>Express Shipping</h4>
+                                    <p>1-2 business days</p>
+                                </div>
+                                <span class="shipping-price">$19.99</span>
+                            </label>
+                            
+                            <label class="shipping-option free">
+                                <input type="radio" name="shipping" value="free">
+                                <div class="shipping-info">
+                                    <h4>Free Shipping</h4>
+                                    <p>5-7 business days</p>
+                                </div>
+                                <span class="shipping-price">$0.00</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-block">
+                        Continue to Payment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                
+                <div class="summary-items" id="summaryItems">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                
+                <div class="summary-totals">
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Tax</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="total-row total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="security-info">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure checkout • SSL encrypted</span>
+                </div>
+                
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+        // Checkout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            updateOrderSummary();
+            
+            // Handle form submission
+            document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                processCheckout();
+            });
+            
+            // Update shipping price when method changes
+            document.querySelectorAll('input[name="shipping"]').forEach(input => {
+                input.addEventListener('change', updateShipping);
+            });
+        });
+        
+        function updateOrderSummary() {
+            const cart = window.shoppingCart;
+            const itemsContainer = document.getElementById('summaryItems');
+            const subtotalElement = document.getElementById('subtotal');
+            const shippingElement = document.getElementById('shipping');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            
+            if (!cart || cart.items.length === 0) {
+                itemsContainer.innerHTML = '<p class="empty">Your cart is empty</p>';
+                return;
+            }
+            
+            // Render items
+            let itemsHTML = '';
+            cart.items.forEach(item => {
+                const price = item.discount ? 
+                    item.price * (1 - item.discount / 100) : 
+                    item.price;
+                
+                itemsHTML += `
+                    <div class="summary-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <p>Quantity: ${item.quantity}</p>
+                        </div>
+                        <div class="item-price">
+                            $${(price * item.quantity).toFixed(2)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            itemsContainer.innerHTML = itemsHTML;
+            
+            // Update totals
+            const summary = cart.getCartSummary();
+            subtotalElement.textContent = `$${summary.subtotal.toFixed(2)}`;
+            shippingElement.textContent = `$${summary.shipping.toFixed(2)}`;
+            taxElement.textContent = `$${summary.tax.toFixed(2)}`;
+            totalElement.textContent = `$${summary.total.toFixed(2)}`;
+        }
+        
+        function updateShipping() {
+            const selected = document.querySelector('input[name="shipping"]:checked');
+            const shippingPrice = selected.value === 'express' ? 19.99 : 
+                                 selected.value === 'free' ? 0 : 9.99;
+            
+            document.getElementById('shipping').textContent = `$${shippingPrice.toFixed(2)}`;
+            
+            // Recalculate total
+            const cart = window.shoppingCart;
+            const subtotal = cart.getSubtotal();
+            const tax = cart.getTax(subtotal);
+            const total = subtotal + shippingPrice + tax;
+            
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+        
+        function processCheckout() {
+            const cart = window.shoppingCart;
+            
+            if (cart.items.length === 0) {
+                alert('Your cart is empty');
+                return;
+            }
+            
+            // Show processing animation
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+            
+            // Simulate checkout process
+            setTimeout(() => {
+                // Create order
+                const order = cart.createOrder(
+                    'credit_card',
+                    {
+                        name: document.querySelector('input[type="text"]').value,
+                        address: document.querySelectorAll('input[type="text"]')[2].value,
+                        city: document.querySelectorAll('input[type="text"]')[3].value,
+                        country: document.querySelector('select').value
+                    }
+                );
+                
+                // Save order
+                const orders = JSON.parse(localStorage.getItem('marketplace_orders') || '[]');
+                orders.push(order);
+                localStorage.setItem('marketplace_orders', JSON.stringify(orders));
+                
+                // Clear cart
+                cart.clear();
+                
+                // Redirect to success page
+                window.location.href = 'order-success.html?order=' + order.id;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
